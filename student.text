@@ -1,3 +1,3 @@
 {'id_number': '001', 'name': 'a', 'python': 1, 'c': 1}
-{'id_number': '001', 'name': 'a', 'python': 1, 'c': 1}
-{'id_number': '002', 'name': 's', 'python': 2, 'c': 2}
+{'id_number': '002', 'name': 'x', 'python': 2, 'c': 2}
+{'id_number': '003', 'name': 'c', 'python': 4, 'c': 4}

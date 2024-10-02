@@ -151,14 +151,14 @@ def insert_info():
            print("您输入的数据有误，请重新输入！")
            continue
        student={"id_number":id_number,  "name":name, "python":python_score, "c":c_score}
-       save_info2(student_list)
        student_list.append(student)
        is_exit=input("是否退出(y/n)：")
        if is_exit=='y' or is_exit=='Y':
           ctrl=False
-       else:
-           print("----下一个学生信息----")
-       print(student_list)
+    else:
+        print("----下一个学生信息----")
+        print(student_list)
+        save_info2(student_list)
     # 保存数据到file name文件
 def save_info2(student_list):
         try:
