@@ -1,0 +1,364 @@
+import os
+file_name="student.text"
+def menu():
+    print('''
+        ---------------学生信息管理系统---------------
+        ⌈-----------------------------------------⌉
+        ‖   ===============功能菜单===============  ‖
+        ‖                                         
+        ‖   1 录入学生信息                           ‖
+        ‖   2 查找学生信息                           ‖
+        ‖   3 删除学生信息                           ‖
+        ‖   4 修改学生信息                           ‖
+        ‖   5 排序学生信息                           ‖
+        ‖   6 统计学生人数                           ‖
+        ‖   7 显示所有信息                           ‖
+        ‖   0 退出学生系统                           ‖
+        ‖   ==================================== 
+        ⌊-----说明：通过数字或⬆⬇方向键选择菜单-----------⌋
+    ''')
+#1--最简单的流程
+# _*_coding：utf-8___*_
+'''def insert_info():
+    stu_list=[]
+    id_number=input("请输学号ID（如001）：")
+    name=input("请输入姓名：")
+
+    python_score=int(input("请输入python成绩；"))
+    c_score=int (input("请输入c成绩："))
+
+    student={"id_number":id_number,  "name":name, "python":python_score, "c":c_score}
+    stu_list.append(student)
+    print(stu_list)'''
+'''#保存数据到file name文件
+def save_info(stu_list):
+    try:
+        file_text=open(file_name,'a',encoding='utf-8')
+    except:
+        file_text=open(file_name,'w',encoding='utf-8')
+    #从1ist中去数据的过程
+    for stu in stu_list:
+        file_text.write(str(stu)+"\n")
+    if file_text:
+        file_text.close()'''
+#保存查询结果
+'''def search_info():
+    stu_quarry = [] #用于保存查询结果
+    id_number= ''#两种查询模式
+    name = ''
+    id_number =input("请输入学号：")
+    try:
+        file_text = open(file_name,'r',encoding='utf-8')
+        stu_read = file_text.readline()
+        print(stu_read)
+        #定义
+        for stu in stu_read:
+            d = dict(eval(stu))
+            if id_number is not "" and d ["id_number"]==id_number:
+                stu_quarry.append(d)
+    finally:
+        if file_name:
+            file_name.close()
+    print(stu_quarry)'''
+
+'''def search_info2():
+    stu_quarry = [] #用来保存查询结果
+    if os.path.exists(file_name):
+        id_number = ''#两种查询模式
+        name = ''
+        id_number = input("请输入学号")
+        with open(file_name,'r',encoding='utf-8') as file:
+            stu_read = file.readline()
+            print(stu_read)
+            #定义
+            for stu in stu_read:
+                d=dict(eval(stu))
+                if id is not "" and d["id"]==id:
+                    stu_quarry.append(d)
+    else:
+        print("文件不存在！")
+        return
+    print(stu_quarry)'''
+#主函数
+def show_infro():
+    pass
+
+
+def main():
+    menu()
+    option = input("请输入数字进行选择：")
+    if option == "1":
+        print("您选择了录入学生信息")
+        insert_info()
+    elif option == "2":
+        print("您选择了查找学生信息")
+        search_info2()
+    elif option == "3":
+        print("您选择了删除学生信息")
+        del_info()
+    elif option == "4":
+        print("您选择了修改学生信息")
+        modify_infor()
+    elif option == "5":
+        print("您选择排序学生信息")
+        sort_info()
+    elif option == "6":
+        print("您选择了统计学生信息")
+        total_info()
+    elif option == "7":
+        print("您选择了显示所有学生信息")
+        show()
+    elif option == "0":
+        out_info()
+    else:
+        print("输入错误，请重新输入=！")
+#2循环的流程
+'''def insert_info():
+    stu_list=[]
+    ctrl=True
+    while ctrl:
+       id_number = input("请输学号ID（如0010）：")
+       name = input("请输入姓名：")
+       python_score= int(input("请输入python成绩；"))
+       c_score= int (input("请输入c成绩："))
+
+       student={"id_number":id_number,  "name":name, "python":python_score, "c":c_score}
+       stu_list.append(student)
+       is_exit=input("是否退出(y/n)")
+       if is_exit=='y' or is_exit=='n':
+           ctrl=False
+       else:
+           print("----下一个学生信息----")'''
+#3--检测学号id的是否合法(录入学生信息)
+def insert_info():
+    student_list=[]
+    ctrl=True
+    while ctrl:
+       id_number = input("请输学号ID（如001）：")
+       if len(id_number) < 3 or len(id_number) > 3:  # 限制学号只能输入三位数字
+           print("学号输入错误！！！")
+           break
+       name = input("请输入姓名：")
+       if id_number.lstrip()=="" or name.lstrip()=='':
+           print("姓名或者id_number不能为空，请重新运行程序")
+           break
+       # 异常数据处理
+       try:
+           # 输入成绩
+           python_score = int(input("请输入python成绩:"))
+           c_score = int(input("请输入c语言成绩:"))
+       except:
+           print("您输入的数据有误，请重新输入！")
+           continue
+       student={"id_number":id_number,  "name":name, "python":python_score, "c":c_score}
+       save_info2(student_list)
+       student_list.append(student)
+       is_exit=input("是否退出(y/n)：")
+       if is_exit=='y' or is_exit=='Y':
+          ctrl=False
+       else:
+           print("----下一个学生信息----")
+       print(student_list)
+    # 保存数据到file name文件
+def save_info2(student_list):
+        try:
+            file_text = open(file_name, 'a', encoding='UTF-8')
+        except:
+            file_text = open(file_name, 'w',encoding='UTF-8')
+        # 从1ist中去数据的过程
+        for stu in student_list:
+            file_text.write(str(stu) + "\n")
+        if file_text:
+            file_text.close()
+#查询信息一个文件存在的判断
+def search_info2():
+    ctrl = True
+    while ctrl:
+        if os.path.exists(file_name) : #两种查询方式
+            student_quarry = []  # 用來保存查詢结果
+            id1 = ""
+            name = ""
+            mode = input("请选择查询模式(1-学号查询  2-姓名查询):")
+            if mode == "1":
+                id1 = input("请输入学号ID：")
+            elif mode == "2":
+                name = input("请输入姓名：")
+            else:
+                print("无效查询模式！")
+                return
+            with open(file_name, 'r',encoding='UTF-8') as file:
+                student_read = file.readlines()
+            #定义
+            for stu in student_read:
+                d = dict(eval (stu) )
+                if id1 != "" and d["id_number"] == id1  or  name != "" and d["name"] == name:
+                    student_quarry.append(d)
+                    print(student_quarry)
+            mark = input("是否退出查询？（yes/no）：")
+            if mark == "yes":
+                ctrl = False
+            else:
+                ctrl = True
+                print("----下一学生信息---")
+        else:
+            print("文件不存在！")
+#删除信息
+def del_info():
+    ctrl=True
+    while ctrl:
+        show()
+        id1 =input("请输入学号：")
+        if os.path.exists(file_name):
+            with open(file_name,'r',encoding='UTF-8') as file:
+                student_old =file.readlines()
+        else:
+            student_old =[]
+        is_find =False
+        if student_old:
+            with open(file_name,'w',encoding='UTF-8') as wfile:
+                for list1 in student_old:
+                    d =dict(eval(list1))
+                    if d["id_number"] !=id1:
+                        wfile.write(str(d)+ "\n")
+                    else:
+                        is_find =True
+                if is_find:
+                    print("id为%s的学生信息已经被删除" % id1)
+                else:
+                    print("id为%s的学生信息没有找到" % id1)
+        else:
+            print("无学生信息")
+            return
+        show()
+        mark=input("是否继续(y/n):")
+        if mark=='N' or mark=='n':
+            ctrl=False
+        else:
+            ctrl=True
+#显示数据
+def show():
+    student_list=[]
+    if os.path.exists(file_name):
+        with open(file_name,'r',encoding='UTF-8')as file:
+            stu_old=file.readlines()
+            for list1 in stu_old:
+                student_list.append(dict(eval(list1)))
+            if student_list:
+                show_student(student_list)
+def show_student(student_list):
+    if not student_list:
+        print("无数据")
+        return
+    format_title="\\{:^12}\\{:^8}\\{:^10}\\{:^10}\\{:^10}"
+    print(format_title.format("id_number","name","python成绩", "C成绩","总成绩"))
+    format_data ="\\{:^12}\\{:^9}\\{:^11}\\{:^10}\\{:^10}"
+    for list1 in student_list:
+        print(format_data.format(list1.get("id_number"), list1.get("name"), str(list1.get("python")), str(list1.get("c")),str(list1.get("c")+list1.get('python'))))
+#修改模块
+def modify_infor():
+    show()
+    if os.path.exists(file_name):
+        with open(file_name,'r',encoding='UTF-8') as file:
+            stu_old=file.readlines()
+    else:
+        print("文件不存在")
+        return
+    is_modify=True
+    if stu_old:
+        id1 = input("请输入要修改学生的学号：")
+        with open(file_name,'w',encoding='UTF-8') as file_new:
+            for student in stu_old:
+                d=dict(eval(student))
+                if d["id_number"]== id1:
+                    print("找到了学生,可以修改他的信息!")
+                    is_modify = False
+                    while True:
+                        try:
+                            d["name"]=input("请验入新姓名:")
+                            d["python"]=int(input("请输入新的python的成绩:"))
+                            d["c"]=int(input("请输入新的C语言的成绩:"))
+                        except ValueError:
+                            print("您的输入有误,请重新输入")
+                        else:
+                            break
+                    #print("开始修改数据")
+                    file_new.write(str(d)+"\n")
+                    print("数据修改成功")
+                else:
+                    file_new.write(student)
+            if is_modify:
+                print("没找到该学生")
+    else:
+        print("没有学生数据")
+    mark = input("是否维续修改学生信息(y/n):")
+    if mark=='Y' or mark== "y":
+        modify_infor()
+#排序
+def sort_info():
+    show()
+    if os.path.exists(file_name):
+       with open(file_name, 'r', encoding='UTF-8') as file:
+            student_old=file.readlines()
+    else:
+        student_old=[]
+    if student_old:
+       student_list=[]
+       for list2 in student_old:
+           d=dict(eval(list2))
+           student_list.append(d)
+       ascOr=input("请选择升序/降序（0--升序  1--降序）：")
+       if ascOr=="0":
+          ascOrBoolean=False
+       elif ascOr=="1":
+            ascOrBoolean=True
+       else:
+            print("输入有误，请重新输入")
+            return
+       mode=input("请选择排序排序方式（0--c语言成绩  1--python成绩  2--总成绩）：")
+       if mode=="0":
+           student=sorted(student_list,key=lambda x:x["c"],reverse=ascOrBoolean)
+           show_student(student)
+       elif mode=="1":
+           student=sorted(student_list,key=lambda x:x["python"],reverse=ascOrBoolean)
+           show_student(student)
+       elif mode=="2":
+           student=sorted(student_list,key=lambda x:(x["c"]+x["python"]),reverse=ascOrBoolean)
+           show_student(student)
+       else:
+            print("输入有误，请重新输入！")
+
+       # show()
+
+    else:
+         print("数据不存在！")
+#统计
+def total_info():
+    show()
+    if os.path.exists(file_name):  # 判断文件是否存在
+        with open(file_name, 'r',encoding='UTF-8') as file:  # 打开文件
+            stu_old = file.readlines()  # 读取全部内容
+        if stu_old:
+            print("一共有 %d 名学生!" %len(stu_old))
+        else:
+            print("还没有录入学生信息!")
+    else:
+        print("暂未保存数据信息!")
+#退出
+import sys
+
+
+def out_info():
+    while True:
+        mark = input("是否退出查询？（yes/no）：").strip().lower()
+        if mark in ["yes", "y"]:
+            print("----已经成功退出系统---")
+            sys.exit()  # 使用sys.exit()来退出程序
+        elif mark in ["no", "n"]:
+            print("----无效输入，请输入yes---")
+        else:
+            print("无效输入，请输入yes或no。")
+
+
+# 调用main函数
+if __name__ == '__main__':
+    main()
